@@ -1,0 +1,50 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>uni.pu.fmi.st</groupId>
+    <artifactId>maven-project</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>maven-kid-project</artifactId>
+  
+  <properties>
+  	<test.groups>uni.pu.fmi.st.SlowTest, uni.pu.fmi.st.SlowTest</test.groups>
+  </properties>
+  
+  <dependencies>
+  	<dependency>
+  		<groupId>uni.pu.fmi.st</groupId>
+    	<artifactId>maven-child-project</artifactId>
+    	<version>${project.version}</version>
+  	</dependency>
+  </dependencies>
+  
+  <profiles>
+  	<profile>
+  		<id>SlowTest</id>
+  		<properties>
+  			<test.groups>uni.pu.fmi.st.SlowTest</test.groups>
+  		</properties>
+  	</profile>
+  	<profile>
+  		<id>FastTest</id>
+  		<properties>
+  			<test.groups>uni.pu.fmi.st.SlowTest</test.groups>
+  		</properties>
+  	</profile>
+  </profiles>
+  
+  <build>
+	<plugins>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+    		<artifactId>maven-surefire-plugin</artifactId>
+    		<version>3.0.0-M5</version>
+    		<configuration>
+        		<groups>${test.groups}</groups>
+    		</configuration>
+		</plugin>
+	</plugins>
+  </build>
+  
+</project>
